@@ -4,6 +4,21 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Swiper -->
+  <link rel="stylesheet" href="assets/styles/swiper-bundle.min.css">
+  <script src="swiper-bundle.min.js"></script>
+
+  <!-- Accordion -->
+  <link rel="stylesheet" href="assets/accordion/jquery-ui.css">
+  <script src="assets/accordion/jquery.js"></script>
+  <script src="assets/accordion/jquery-ui.js"></script>
+  <script>
+    $( function() {
+      $( "#accordion" ).accordion();
+    } );
+  </script>
+
   <link rel="stylesheet" href="assets/styles/style.css">
   <title>Евклид</title>
 </head>
@@ -54,9 +69,9 @@
   </svg>
 
   <!-- Header -->
-  <header class="header">
+  <header id="header" class="header">
     <div class="container header__container">
-      <button aria-label="Открыть меню" class="burger-menu">
+      <button id="burger-menu" aria-label="Открыть меню" class="burger-menu">
         <span class="burger-menu__item">Menu</span>
       </button>
       
@@ -69,8 +84,14 @@
         </picture>
       </a>
 
-      <nav class="header__nav">
-        <ul class="header-list">
+      <nav id="header__nav" class="header__nav">
+        <div id="burger-item" class="burger-item">
+          <button id="burger-menu--closed" aria-label="Закрыть меню" class="burger-menu--closed">
+            <span class="menu-closed__item">Menu</span>
+          </button>
+        </div>
+
+        <ul id="header-list" class="header-list">
           <li class="header-list__item">
             <a class="header-list__link link" href="#">О нас</a>
           </li>
@@ -87,14 +108,14 @@
             <a class="header-list__link link" href="#">Контакты</a>
           </li>
         </ul>
-
-        <button aria-label="Найти" class="btn-search" type="button" name="search">
-          <svg class="search-icon">
-            <use class="search-rect" xlink:href="#search-rect" fill="#333333"></use>
-            <use class="search-circle" xlink:href="#search-circle" stroke="#333333"></use>
-          </svg>
-        </button>
       </nav>
+
+      <button aria-label="Найти" class="btn-search" type="button" name="search">
+        <svg class="search-icon">
+          <use class="search-rect" xlink:href="#search-rect" fill="#333333"></use>
+          <use class="search-circle" xlink:href="#search-circle" stroke="#333333"></use>
+        </svg>
+      </button>
     </div>
   </header>
 
@@ -102,13 +123,46 @@
   <main>
     <!-- Intro -->
     <div class="container">
-      <div class="intro">
-        <div class="intro__content">
-          <h1 class="intro__title">Проектные решения любой сложности</h1>
-          <p class="intro__description">Есть над чем задуматься: базовые сценарии поведения пользователей и по сей день остаются уделом проектантов</p>
-          <button class="intro-content__btn btn btn--orange" type="button">Заказать расчёт</button>
+      <div class="swiper-container">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide">
+            <div class="intro">
+              <div class="intro__content">
+                <h1 class="intro__title">Проектные решения любой сложности</h1>
+                <p class="intro__description">Есть над чем задуматься: базовые сценарии поведения пользователей и по сей день остаются уделом проектантов</p>
+                <button class="intro-content__btn btn btn--orange" type="button">Заказать расчёт</button>
+              </div>
+            </div>  
+          </div>
+          <div class="swiper-slide">
+            <div class="intro intro-2">
+              <div class="intro__content">
+                <h1 class="intro__title">Проектные решения любой сложности</h1>
+                <p class="intro__description">Есть над чем задуматься: базовые сценарии поведения пользователей и по сей день остаются уделом проектантов</p>
+                <button class="intro-content__btn btn btn--orange" type="button">Заказать расчёт</button>
+              </div>
+            </div>  
+          </div>
+          <div class="swiper-slide">
+            <div class="intro intro-3">
+              <div class="intro__content">
+                <h1 class="intro__title">Проектные решения любой сложности</h1>
+                <p class="intro__description">Есть над чем задуматься: базовые сценарии поведения пользователей и по сей день остаются уделом проектантов</p>
+                <button class="intro-content__btn btn btn--orange" type="button">Заказать расчёт</button>
+              </div>
+            </div>  
+          </div>
         </div>
-      </div>  
+        <!-- If we need pagination -->
+        <div class="swiper-pagination"></div>
+
+        <!-- If we need navigation buttons -->
+        <!-- <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div> -->
+
+        <!-- If we need scrollbar -->
+        <!-- <div class="swiper-scrollbar"></div> -->
+      </div>
     </div>
 
     <!-- About -->
@@ -215,37 +269,57 @@
     <section class="section section-faq">
       <div class="container">
         <h2 class="section__title">Часто задаваемые вопросы</h2>
-          <ul class="faq__list">
+          <ul id="accordion" class="faq__list accordion">
             <li class="faq-list__item">
               <a href="#" class="faq-list__link link">Из чего формируется конечная стоимость проекта?</a>
               <button aria-label="Подробнее" class="btn-plus" type="button">
                 <span class="plus-icon"></span>
               </button>
             </li>
+            <div>
+              <p class="faq-list__content">Являясь всего лишь частью общей картины, непосредственные участники технического прогресса призывают нас к новым свершениям, которые, в свою очередь, должны быть своевременно верифицированы. Но высококачественный прототип будущего проекта является качественно новой ступенью первоочередных требований. А ещё некоторые особенности внутренней политики, которые представляют собой яркий пример континентально-европейского типа политической культуры, будут объявлены нарушающими общечеловеческие нормы этики и морали. И нет сомнений, что явные признаки победы институционализации призывают нас к новым свершениям, которые, в свою очередь, должны быть указаны как претенденты на роль ключевых факторов.</p>
+              <p class="faq-list__content">Приятно, граждане, наблюдать, как некоторые особенности внутренней политики могут быть призваны к ответу. Явные признаки победы институционализации набирают популярность среди определенных слоев населения, а значит, должны быть объединены в целые кластеры себе подобных. Банальные, но неопровержимые выводы, а также многие известные личности призывают нас к новым свершениям, которые, в свою очередь, должны быть представлены в исключительно положительном свете.</p>
+            </div>
             <li class="faq-list__item">
               <a href="#" class="faq-list__link link">У меня есть свой проект. Сможем ли мы его доработать / реализовать?</a>
               <button aria-label="Подробнее" class="btn-plus" type="button">
                 <span class="plus-icon"></span>
               </button>
             </li>
+            <div>
+              <p class="faq-list__content">Являясь всего лишь частью общей картины, непосредственные участники технического прогресса призывают нас к новым свершениям, которые, в свою очередь, должны быть своевременно верифицированы. Но высококачественный прототип будущего проекта является качественно новой ступенью первоочередных требований. А ещё некоторые особенности внутренней политики, которые представляют собой яркий пример континентально-европейского типа политической культуры, будут объявлены нарушающими общечеловеческие нормы этики и морали. И нет сомнений, что явные признаки победы институционализации призывают нас к новым свершениям, которые, в свою очередь, должны быть указаны как претенденты на роль ключевых факторов.</p>
+              <p class="faq-list__content">Приятно, граждане, наблюдать, как некоторые особенности внутренней политики могут быть призваны к ответу. Явные признаки победы институционализации набирают популярность среди определенных слоев населения, а значит, должны быть объединены в целые кластеры себе подобных. Банальные, но неопровержимые выводы, а также многие известные личности призывают нас к новым свершениям, которые, в свою очередь, должны быть представлены в исключительно положительном свете.</p>
+            </div>
             <li class="faq-list__item">
               <a href="#" class="faq-list__link link">Я выбираю между разными компаниями. В чём ваше отличие?</a>
               <button aria-label="Подробнее" class="btn-plus" type="button">
                 <span class="plus-icon"></span>
               </button>
             </li>
+            <div>
+              <p class="faq-list__content">Являясь всего лишь частью общей картины, непосредственные участники технического прогресса призывают нас к новым свершениям, которые, в свою очередь, должны быть своевременно верифицированы. Но высококачественный прототип будущего проекта является качественно новой ступенью первоочередных требований. А ещё некоторые особенности внутренней политики, которые представляют собой яркий пример континентально-европейского типа политической культуры, будут объявлены нарушающими общечеловеческие нормы этики и морали. И нет сомнений, что явные признаки победы институционализации призывают нас к новым свершениям, которые, в свою очередь, должны быть указаны как претенденты на роль ключевых факторов.</p>
+              <p class="faq-list__content">Приятно, граждане, наблюдать, как некоторые особенности внутренней политики могут быть призваны к ответу. Явные признаки победы институционализации набирают популярность среди определенных слоев населения, а значит, должны быть объединены в целые кластеры себе подобных. Банальные, но неопровержимые выводы, а также многие известные личности призывают нас к новым свершениям, которые, в свою очередь, должны быть представлены в исключительно положительном свете.</p>
+            </div>
             <li class="faq-list__item">
               <a href="#" class="faq-list__link link">Могу ли я делегировать вам работу / согласование с подрядчиком / организацией?</a>
               <button aria-label="Подробнее" class="btn-plus" type="button">
                 <span class="plus-icon"></span>
               </button>
             </li>
+            <div>
+              <p class="faq-list__content">Являясь всего лишь частью общей картины, непосредственные участники технического прогресса призывают нас к новым свершениям, которые, в свою очередь, должны быть своевременно верифицированы. Но высококачественный прототип будущего проекта является качественно новой ступенью первоочередных требований. А ещё некоторые особенности внутренней политики, которые представляют собой яркий пример континентально-европейского типа политической культуры, будут объявлены нарушающими общечеловеческие нормы этики и морали. И нет сомнений, что явные признаки победы институционализации призывают нас к новым свершениям, которые, в свою очередь, должны быть указаны как претенденты на роль ключевых факторов.</p>
+              <p class="faq-list__content">Приятно, граждане, наблюдать, как некоторые особенности внутренней политики могут быть призваны к ответу. Явные признаки победы институционализации набирают популярность среди определенных слоев населения, а значит, должны быть объединены в целые кластеры себе подобных. Банальные, но неопровержимые выводы, а также многие известные личности призывают нас к новым свершениям, которые, в свою очередь, должны быть представлены в исключительно положительном свете.</p>
+            </div>
             <li class="faq-list__item">
               <a href="#" class="faq-list__link link">Могу ли я вернуть деньги на каком-либо из этапов работ?</a>
               <button aria-label="Подробнее" class="btn-plus" type="button">
                 <span class="plus-icon"></span>
               </button>
             </li>
+            <div>
+              <p class="faq-list__content">Являясь всего лишь частью общей картины, непосредственные участники технического прогресса призывают нас к новым свершениям, которые, в свою очередь, должны быть своевременно верифицированы. Но высококачественный прототип будущего проекта является качественно новой ступенью первоочередных требований. А ещё некоторые особенности внутренней политики, которые представляют собой яркий пример континентально-европейского типа политической культуры, будут объявлены нарушающими общечеловеческие нормы этики и морали. И нет сомнений, что явные признаки победы институционализации призывают нас к новым свершениям, которые, в свою очередь, должны быть указаны как претенденты на роль ключевых факторов.</p>
+              <p class="faq-list__content">Приятно, граждане, наблюдать, как некоторые особенности внутренней политики могут быть призваны к ответу. Явные признаки победы институционализации набирают популярность среди определенных слоев населения, а значит, должны быть объединены в целые кластеры себе подобных. Банальные, но неопровержимые выводы, а также многие известные личности призывают нас к новым свершениям, которые, в свою очередь, должны быть представлены в исключительно положительном свете.</p>
+            </div>
           </ul>
       </div>
     </section>
@@ -331,5 +405,69 @@
       </div>
     </div>
   </footer>
+
+  <script>
+    var mySwiper = new Swiper('.swiper-container', {
+      // Optional parameters
+      loop: true,
+
+      // If we need pagination
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: 'true',
+      },
+    });
+
+
+    // Accordion
+    $('.accordion').accordion({
+      heightStyle: 'content',
+      header: '.faq-list__item',
+      collapsible: true,
+      icons: false,
+      active: false
+    });
+
+
+    //Burger
+    let headerNav = document.querySelector('#header__nav')
+    let headerList = document.querySelector('#header-list')
+    let burgerClosed = document.querySelector('#burger-item')
+    let burgerMenu = document.querySelector('#burger-menu')
+
+    burgerMenu.addEventListener('click', function() {
+      heightHeader = document.querySelector('#header').offsetHeight
+      heightIntro = document.querySelector('.intro').offsetHeight
+      headerNav.classList.toggle('show')
+      this.classList.toggle('is-active')
+      
+      if(this.classList.contains('is-active')) {
+        setHeight(heightIntro, heightHeader)
+      }
+    })
+
+    document.querySelector('#burger-menu--closed').addEventListener('click', function(){
+      headerNav.classList.toggle('show')
+      burgerMenu.classList.toggle('is-active')
+
+      headerList.style.height = ''
+      burgerClosed.style.height = ''
+    })
+
+    function setHeight(heightList, heightBurger) {
+      headerList.style.height = heightList + 'px'
+      burgerClosed.style.height = heightBurger + 'px'
+      heightHeaderList = heightList
+      heightBurgerClosed = heightBurger
+    }
+
+    window.addEventListener('resize', function() {
+      let newHeightIntro = document.querySelector('.intro').offsetHeight
+      let newHeightHeader = document.querySelector('#header').offsetHeight 
+      if (headerNav.classList.contains('show') && heightHeaderList != newHeightIntro) {
+        setHeight(newHeightIntro, newHeightHeader)
+      }
+    })
+  </script>
 </body>
 </html>
